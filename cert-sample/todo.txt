@@ -1,0 +1,5 @@
+rem https://stackoverflow.com/questions/27123532/verifying-signed-message-of-sap-content-server-with-openssl-or-php
+rem http://qistoph.blogspot.de/2012/01/manual-verify-pkcs7-signed-data-with.html
+openssl pkcs7 -print_certs -inform der -in mp.p7b -out mp.cer
+openssl x509 -pubkey -noout -in mp.cer  > mp.pubkey
+openssl smime -verify -inform der -in mp.seckey -content mp.message -certfile mp.cer -noverify
