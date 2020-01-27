@@ -21,7 +21,7 @@ var (
 )
 
 func InitDB(init bool, prefill bool) {
-	orm.Debug = common.IsDebugMode()
+	orm.Debug = *common.FlagLogVerbose
 	orm.DefaultTimeLoc = time.Local
 
 	orm.RegisterModel(new(Contrep), new(Document), new(Component))

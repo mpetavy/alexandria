@@ -38,7 +38,7 @@ func ExportPubkey(pemFile, pubkeyFile string) error {
 	common.Fatal(err)
 
 	cmd := exec.Command(path, "x509", "-pubkey", "-noout", "-in", pemFile, "-outform", "pem")
-	if common.IsDebugMode() {
+	if *common.FlagLogVerbose {
 		cmd.Stderr = os.Stderr
 	}
 
@@ -59,7 +59,7 @@ func Verify(pemFile, signatureFile, messageFile string) error {
 	common.Fatal(err)
 
 	cmd := exec.Command(path, "smime", "-verify", "-inform", "der", "-in", signatureFile, "-content", messageFile, "-certfile", pemFile, "-noverify")
-	if common.IsDebugMode() {
+	if *common.FlagLogVerbose {
 		cmd.Stderr = os.Stderr
 	}
 

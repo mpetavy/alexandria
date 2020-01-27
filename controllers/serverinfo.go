@@ -36,9 +36,9 @@ func (c *Archivelink) serverInfo() error {
 		m := make(map[string]string)
 
 		m[SERVER_STATUS] = RUNNING
-		m[SERVER_VENDOR_ID] = common.GetApp().Developer
-		m[SERVER_VERSION] = common.GetApp().Version
-		m[SERVER_BUILD] = common.GetApp().Version
+		m[SERVER_VENDOR_ID] = common.Application().Developer
+		m[SERVER_VERSION] = common.Application().Version
+		m[SERVER_BUILD] = common.Application().Version
 		m[SERVER_TIME] = t.Format(common.Hour + common.Minute + common.Second)
 		m[SERVER_DATE] = t.Format(common.Year + common.Month + common.Day + common.Msec)
 		m[SERVER_STATUS_DESCRIPTION] = RUNNING
