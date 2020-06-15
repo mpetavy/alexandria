@@ -26,24 +26,24 @@ func (c *Archivelink) putCert() {
 			defer c.Ctx.Request.Body.Close()
 
 			body, err := ioutil.ReadAll(c.Ctx.Request.Body)
-			common.Fatal(err)
+			common.Error(err)
 
 			derFile, err := common.CreateTempFile()
-			common.Fatal(err)
+			common.Error(err)
 
 			derFile.Write(body)
 			derFile.Close()
 
 			pemFilename, err := common.CreateTempFile()
-			common.Fatal(err)
+			common.Error(err)
 
 			err = openssl.ConvertDER2PEM(derFile.Name(), pemFilename.Name())
-			common.Fatal(err)
+			common.Error(err)
 
 			beego.Debug("read ConvertDER2PEM PEM file")
 
 			pem, err := ioutil.ReadFile(pemFilename.Name())
-			common.Fatal(err)
+			common.Error(err)
 
 			if contrep.IsCertProtected {
 				contrep.ReceivedCert = string(pem)
@@ -54,7 +54,7 @@ func (c *Archivelink) putCert() {
 			}
 
 			_, err = models.Orm.Update(&contrep)
-			common.Fatal(err)
+			common.Error(err)
 		} else {
 			c.CustomAbort(406, common.Translate("Unknown Content Repository %s", c.Param(CONTREP)))
 		}

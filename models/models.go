@@ -28,7 +28,7 @@ func InitDB(init bool, prefill bool) {
 	orm.RegisterDataBase("default", beego.AppConfig.String(DB_DRIVER), beego.AppConfig.String(DB_CONN))
 
 	err := orm.RunSyncdb("default", init, true)
-	common.Fatal(err)
+	common.Error(err)
 
 	Orm = orm.NewOrm()
 	Orm.Using("default")
@@ -36,14 +36,14 @@ func InitDB(init bool, prefill bool) {
 	if prefill {
 		contrep := &Contrep{Name: "MP", Desc: "Description of MP content repository", IsOnline: true, IsCertChecked: true}
 		_, err := Orm.Insert(contrep)
-		common.Fatal(err)
+		common.Error(err)
 
 		var documents []*Document
 
 		for i := 0; i < 10; i++ {
 			document := &Document{Name: "Document #" + strconv.Itoa(i)}
 			_, err = Orm.Insert(document)
-			common.Fatal(err)
+			common.Error(err)
 
 			documents = append(documents, document)
 
@@ -52,7 +52,7 @@ func InitDB(init bool, prefill bool) {
 				component.Document = document
 
 				_, err = Orm.Insert(component)
-				common.Fatal(err)
+				common.Error(err)
 			}
 		}
 	}

@@ -34,24 +34,24 @@ func (c *Archivelink) create() {
 	// 		defer c.Ctx.Request.Body.Close()
 	//
 	// 		body, err := ioutil.ReadAll(c.Ctx.Request.Body)
-	// 		common.Fatal(err)
+	// 		common.Error(err)
 	//
 	// 		derFile, err := app.CreateTempFile()
-	// 		common.Fatal(err)
+	// 		common.Error(err)
 	//
 	// 		derFile.Write(body)
 	// 		derFile.Close()
 	//
 	// 		pemFilename, err := app.CreateTempFilename()
-	// 		common.Fatal(err)
+	// 		common.Error(err)
 	//
 	// 		err = openssl.ConvertDER2PEM(derFile.Name(), pemFilename)
-	// 		common.Fatal(err)
+	// 		common.Error(err)
 	//
 	// 		beego.Debug("read ConvertDER2PEM PEM file")
 	//
 	// 		pem, err := ioutil.ReadFile(pemFilename)
-	// 		common.Fatal(err)
+	// 		common.Error(err)
 	//
 	// 		if contrep.IsCertProtected {
 	// 			contrep.ReceivedCert = string(pem)
@@ -63,7 +63,7 @@ func (c *Archivelink) create() {
 	//
 	// 		_, err = models.Orm.Update(&contrep)
 	//
-	// 		common.Fatal(err)
+	// 		common.Error(err)
 	// 	} else {
 	// 		c.CustomAbort(406, app.Translate("Unknown Content Repository %s", c.Param(CONTREP)))
 	// 	}
