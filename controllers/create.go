@@ -1,6 +1,5 @@
 package controllers
 
-// "io/ioutil"
 // "time"
 //
 // "github.com/astaxie/beego"
@@ -33,7 +32,7 @@ func (c *Archivelink) create() {
 	// 	if err != orm.ErrNoRows {
 	// 		defer c.Ctx.Request.Body.Close()
 	//
-	// 		body, err := ioutil.ReadAll(c.Ctx.Request.Body)
+	// 		body, err := io.ReadAll(c.Ctx.Request.Body)
 	// 		common.Error(err)
 	//
 	// 		derFile, err := app.CreateTempFile()
@@ -50,7 +49,7 @@ func (c *Archivelink) create() {
 	//
 	// 		beego.Debug("read ConvertDER2PEM PEM file")
 	//
-	// 		pem, err := ioutil.ReadFile(pemFilename)
+	// 		pem, err := os.ReadFile(pemFilename)
 	// 		common.Error(err)
 	//
 	// 		if contrep.IsCertProtected {

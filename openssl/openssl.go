@@ -1,7 +1,6 @@
 package openssl
 
 import (
-	"io/ioutil"
 	"os"
 	"os/exec"
 
@@ -47,7 +46,7 @@ func ExportPubkey(pemFile, pubkeyFile string) error {
 
 	pubkey, _ := cmd.Output()
 
-	err = ioutil.WriteFile(pubkeyFile, pubkey, 0644)
+	err = os.WriteFile(pubkeyFile, pubkey, 0644)
 	common.Error(err)
 
 	return nil

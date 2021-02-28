@@ -1,7 +1,8 @@
 package controllers
 
 import (
-	"io/ioutil"
+	"io"
+	"os"
 	"time"
 
 	"github.com/astaxie/beego"
@@ -25,7 +26,7 @@ func (c *Archivelink) putCert() {
 		if err != orm.ErrNoRows {
 			defer c.Ctx.Request.Body.Close()
 
-			body, err := ioutil.ReadAll(c.Ctx.Request.Body)
+			body, err := io.ReadAll(c.Ctx.Request.Body)
 			common.Error(err)
 
 			derFile, err := common.CreateTempFile()
@@ -42,7 +43,7 @@ func (c *Archivelink) putCert() {
 
 			beego.Debug("read ConvertDER2PEM PEM file")
 
-			pem, err := ioutil.ReadFile(pemFilename.Name())
+			pem, err := os.ReadFile(pemFilename.Name())
 			common.Error(err)
 
 			if contrep.IsCertProtected {
